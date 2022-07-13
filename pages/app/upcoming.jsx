@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const UpcomingPage = () => {
-  return <div>upcoming</div>;
+    return <div>upcoming</div>;
 };
 
-export default upcoming;
+export default UpcomingPage;

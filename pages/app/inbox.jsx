@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { InboxPageTasks, InboxPageTitle } from "../../components/Inbox";
+import { fetchTasks } from "../../redux/reducers";
 
 const InboxPage = () => {
-  return <div>inbox</div>;
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchTasks());
+    }, []);
+    return (
+        <div>
+            <InboxPageTitle />
+            <InboxPageTasks />
+        </div>
+    );
 };
 
-export default inbox;
+export default InboxPage;
