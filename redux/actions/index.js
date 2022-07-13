@@ -5,3 +5,5 @@ export * as loginActions from "./login.js";
 export * as registerActions from "./register.js";
 
 export * as tasksActions from "./tasks.js";
+
+export * as taskEditActions from "./taskEdit.js";

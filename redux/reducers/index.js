@@ -7,6 +7,7 @@ import login from "./login.js";
 import register from "./register.js";
 
 import tasks, { fetchTasks } from "./tasks.js";
+import taskEdit from "./taskEdit.js";
 
 const reducers = combineReducers({
     users,
@@ -16,6 +17,7 @@ const reducers = combineReducers({
     register,
 
     tasks,
+    taskEdit,
 });
 
 export default reducers;
