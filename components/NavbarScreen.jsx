@@ -28,9 +28,7 @@ const NavbarScreen = () => {
         router.push(`/members/username/${auth.profile?.username}`);
     };
 
-    useEffect(() => {
-        dispatch(fetchProfile());
-    }, [auth.user, dispatch, auth.isAuthenticated, auth.profile]);
+    useEffect(() => {}, []);
 
     return (
         <Navbar fluid={true} rounded={true}>
@@ -59,7 +57,7 @@ const NavbarScreen = () => {
                     label={
                         <Avatar
                             alt="User settings"
-                            img={auth.profile?.avatars[0]?.url}
+                            // img={auth.profile?.avatars[0]?.url}
                             rounded={true}
                             size="md"
                         />

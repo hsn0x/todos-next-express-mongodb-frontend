@@ -32,146 +32,152 @@ const TaskBoxEdit = () => {
 
     return (
         <div>
-            <Modal show={isEdit} onClose={onClose} size="4xl">
-                <Modal.Header>Terms of Service</Modal.Header>
-                <Modal.Body>
-                    <div className="flex gap-2">
-                        <form className="w-3/4">
-                            <TextInput
-                                id="title"
-                                type="text"
-                                value={row.title}
-                                onChange={(e) =>
-                                    taskEditUpdateTitle(e.target.value)
-                                }
-                                style={{
-                                    background: "transparent",
-                                    border: 0,
-                                    outline: "none",
-                                    "--tw-ring-opacity": 0,
-                                    fontSize: "1.5rem",
-                                }}
-                            />
-                            <Textarea
-                                rows={4}
-                                id="description"
-                                type="text"
-                                value={row.description}
-                                onChange={(e) =>
-                                    taskEditUpdateDescription(e.target.value)
-                                }
-                                style={{
-                                    background: "transparent",
-                                    border: 0,
-                                    "--tw-ring-opacity": 0,
-                                }}
-                            />
-                        </form>
-                        <div className="w-1/4">
-                            <div>
-                                <div className="">
-                                    <Label
-                                        htmlFor="projects"
-                                        value="Change Project"
-                                    />
-                                </div>
+            {profile && (
+                <Modal show={isEdit} onClose={onClose} size="4xl">
+                    <Modal.Header>Terms of Service</Modal.Header>
+                    <Modal.Body>
+                        <div className="flex gap-2">
+                            <form className="w-3/4">
+                                <TextInput
+                                    id="title"
+                                    type="text"
+                                    value={row.title}
+                                    onChange={(e) =>
+                                        taskEditUpdateTitle(e.target.value)
+                                    }
+                                    style={{
+                                        background: "transparent",
+                                        border: 0,
+                                        outline: "none",
+                                        "--tw-ring-opacity": 0,
+                                        fontSize: "1.5rem",
+                                    }}
+                                />
+                                <Textarea
+                                    rows={4}
+                                    id="description"
+                                    type="text"
+                                    value={row.description}
+                                    onChange={(e) =>
+                                        taskEditUpdateDescription(
+                                            e.target.value
+                                        )
+                                    }
+                                    style={{
+                                        background: "transparent",
+                                        border: 0,
+                                        "--tw-ring-opacity": 0,
+                                    }}
+                                />
+                            </form>
+                            <div className="w-1/4">
                                 <div>
-                                    <Select
-                                        id="projects"
-                                        required={true}
-                                        value={row.Project.id}
-                                        onChange={(e) =>
-                                            taskEditUpdateProjectId(
-                                                e.target.value
-                                            )
-                                        }
-                                    >
-                                        {profile.Projects &&
-                                            profile.Projects.map((project) => (
-                                                <option
-                                                    key={project.id}
-                                                    value={project.id}
-                                                >
-                                                    {project.name}
-                                                </option>
-                                            ))}
-                                    </Select>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="">
-                                    <Label
-                                        htmlFor="Labels"
-                                        value="Change Label"
-                                    />
-                                </div>
-                                <div>
-                                    <Select
-                                        id="Labels"
-                                        required={true}
-                                        value={row.Label?.id || ""}
-                                        onChange={(e) =>
-                                            taskEditUpdateLabelId(
-                                                e.target.value
-                                            )
-                                        }
-                                    >
-                                        {profile.Labels &&
-                                            profile.Labels.map((label) => (
-                                                <option
-                                                    key={label.id}
-                                                    value={label.id}
-                                                >
-                                                    {label.name}
-                                                </option>
-                                            ))}
-                                    </Select>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="">
-                                    <Label
-                                        htmlFor="priorities"
-                                        value="Change Priority"
-                                    />
-                                </div>
-                                <div>
-                                    <Select
-                                        id="priorities"
-                                        required={true}
-                                        value={row.Priority.id}
-                                        onChange={(e) =>
-                                            taskEditUpdatePriorityId(
-                                                e.target.value
-                                            )
-                                        }
-                                    >
-                                        {profile.Priorities &&
-                                            profile.Priorities.map(
-                                                (priority) => (
-                                                    <option
-                                                        key={priority.id}
-                                                        value={priority.id}
-                                                    >
-                                                        {priority.name}
-                                                    </option>
+                                    <div className="">
+                                        <Label
+                                            htmlFor="projects"
+                                            value="Change Project"
+                                        />
+                                    </div>
+                                    <div>
+                                        <Select
+                                            id="projects"
+                                            required={true}
+                                            value={row.Project.id}
+                                            onChange={(e) =>
+                                                taskEditUpdateProjectId(
+                                                    e.target.value
                                                 )
-                                            )}
-                                    </Select>
+                                            }
+                                        >
+                                            {profile.Projects &&
+                                                profile.Projects.map(
+                                                    (project) => (
+                                                        <option
+                                                            key={project.id}
+                                                            value={project.id}
+                                                        >
+                                                            {project.name}
+                                                        </option>
+                                                    )
+                                                )}
+                                        </Select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="">
+                                        <Label
+                                            htmlFor="Labels"
+                                            value="Change Label"
+                                        />
+                                    </div>
+                                    <div>
+                                        <Select
+                                            id="Labels"
+                                            required={true}
+                                            value={row.Label?.id || ""}
+                                            onChange={(e) =>
+                                                taskEditUpdateLabelId(
+                                                    e.target.value
+                                                )
+                                            }
+                                        >
+                                            {profile.Labels &&
+                                                profile.Labels.map((label) => (
+                                                    <option
+                                                        key={label.id}
+                                                        value={label.id}
+                                                    >
+                                                        {label.name}
+                                                    </option>
+                                                ))}
+                                        </Select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="">
+                                        <Label
+                                            htmlFor="priorities"
+                                            value="Change Priority"
+                                        />
+                                    </div>
+                                    <div>
+                                        <Select
+                                            id="priorities"
+                                            required={true}
+                                            value={row.Priority.id}
+                                            onChange={(e) =>
+                                                taskEditUpdatePriorityId(
+                                                    e.target.value
+                                                )
+                                            }
+                                        >
+                                            {profile.Priorities &&
+                                                profile.Priorities.map(
+                                                    (priority) => (
+                                                        <option
+                                                            key={priority.id}
+                                                            value={priority.id}
+                                                        >
+                                                            {priority.name}
+                                                        </option>
+                                                    )
+                                                )}
+                                        </Select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button color={"gray"} onClick={onClose}>
-                        <span>Close</span>
-                    </Button>
-                    <Button color={"gray"}>
-                        <span>Save</span>
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button color={"gray"} onClick={onClose}>
+                            <span>Close</span>
+                        </Button>
+                        <Button color={"gray"}>
+                            <span>Save</span>
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            )}
         </div>
     );
 };

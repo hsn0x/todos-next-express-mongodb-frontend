@@ -11,10 +11,10 @@ const InboxPage = ({ authUser }) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await dispatch(updateAuth(authUser));
-            await dispatch(updateIsAuthenticated(!!authUser));
-            await dispatch(fetchProfile());
-            await dispatch(fetchTasks());
+            dispatch(updateAuth(authUser));
+            dispatch(updateIsAuthenticated(!!authUser));
+            dispatch(fetchProfile());
+            dispatch(fetchTasks());
         };
         fetchData();
     }, []);

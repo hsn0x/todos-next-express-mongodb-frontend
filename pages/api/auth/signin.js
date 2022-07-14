@@ -10,10 +10,10 @@ async function loginRoute(req, res) {
     if (authUser) {
         req.session.user = {
             ...authUser,
-            Markets: [],
-            Products: [],
-            comments: [],
-            reviews: [],
+            Projects: [],
+            Labels: [],
+            Priorities: [],
+            Tasks: [],
         };
         await req.session.save();
         return res.send({ ok: true, message: "Logged in" });
