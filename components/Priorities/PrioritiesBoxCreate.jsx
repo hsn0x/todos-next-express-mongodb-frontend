@@ -1,15 +1,14 @@
 import { Checkbox, Dropdown, Label, Radio } from "flowbite-react";
 import React, { Profiler } from "react";
-import { FaCheck, FaDatabase, FaFlag } from "react-icons/fa";
+import { FaCheck, FaFlag } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { taskCreateActions } from "../../redux/actions";
 
-const ProjectBox = ({ Projects }) => {
+const PrioritiesBoxCreate = ({ Priorities, row }) => {
     const dispatch = useDispatch();
-    const { row, isCreate } = useSelector(({ taskCreate }) => taskCreate);
 
-    const { taskCreateUpdateProjectId } = bindActionCreators(
+    const { taskCreateUpdatePriorityId } = bindActionCreators(
         taskCreateActions,
         dispatch
     );
@@ -17,28 +16,28 @@ const ProjectBox = ({ Projects }) => {
     return (
         <Dropdown
             label={
-                <div className="flex gap-1">
-                    <div className="flex items-center">
-                        <FaDatabase />
-                    </div>
-                    <div>Inbox</div>
+                <div>
+                    <FaFlag />
                 </div>
             }
             color={"gray"}
             size="sm"
+            pill={true}
         >
-            {Projects &&
-                Projects.map((project) => (
+            {Priorities &&
+                Priorities.map((priority) => (
                     <div
-                        key={project.id}
-                        onClick={() => taskCreateUpdateProjectId(project.id)}
+                        key={priority.id}
+                        onClick={() => taskCreateUpdatePriorityId(priority.id)}
                         className="cursor-pointer"
                     >
                         <Dropdown.Item>
                             <div className="flex justify-between w-52">
-                                <div>{project.name}</div>
+                                <div>{priority.name}</div>
                                 <div>
-                                    {row.ProjectId == project.id && <FaCheck />}
+                                    {row.PriorityId == priority.id && (
+                                        <FaCheck />
+                                    )}
                                 </div>
                             </div>
                         </Dropdown.Item>
@@ -48,4 +47,4 @@ const ProjectBox = ({ Projects }) => {
     );
 };
 
-export default ProjectBox;
+export default PrioritiesBoxCreate;

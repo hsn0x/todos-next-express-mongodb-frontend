@@ -1,35 +1,37 @@
 import React from "react";
-import DueDateBox from "../DueDate/DueDateBox";
-import LabelsBox from "../Labels/LabelsBox";
-import PrioritiesBox from "../Priorities/PrioritiesBox";
-import ProjectBox from "../Project/ProjectBox";
-import RemindersBox from "../Reminders/RemindersBox";
-import { bindActionCreators } from "redux";
-import { taskCreateActions } from "../../redux/actions";
+import DueDateBoxCreate from "../DueDate/DueDateBoxCreate";
+import LabelsBoxCreate from "../Labels/LabelsBoxCreate";
+import PrioritiesBoxCreate from "../Priorities/PrioritiesBoxCreate";
+import ProjectBoxCreate from "../Project/ProjectBoxCreate";
+import RemindersBoxCreate from "../Reminders/RemindersBoxCreate";
 import { useSelector, useDispatch } from "react-redux";
 
 const TaskBoxCreateBodyButtons = () => {
     const { profile } = useSelector(({ auth }) => auth);
+    const { row } = useSelector(({ taskCreate }) => taskCreate);
 
     return (
         <div className="flex justify-between">
             <div className="flex gap-1">
                 <div>
-                    <DueDateBox />
+                    <DueDateBoxCreate />
                 </div>
                 <div>
-                    <ProjectBox Projects={profile.Projects} />
+                    <ProjectBoxCreate row={row} Projects={profile.Projects} />
                 </div>
             </div>
             <div className="flex gap-2">
                 <div>
-                    <LabelsBox Labels={profile.Labels} />
+                    <LabelsBoxCreate row={row} Labels={profile.Labels} />
                 </div>
                 <div>
-                    <PrioritiesBox Priorities={profile.Priorities} />
+                    <PrioritiesBoxCreate
+                        row={row}
+                        Priorities={profile.Priorities}
+                    />
                 </div>
                 <div>
-                    <RemindersBox />
+                    <RemindersBoxCreate />
                 </div>
             </div>
         </div>

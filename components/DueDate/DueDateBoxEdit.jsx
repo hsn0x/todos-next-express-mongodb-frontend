@@ -23,7 +23,7 @@ import { bindActionCreators } from "redux";
 import { taskCreateActions } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 
-const DueDateBox = () => {
+const DueDateBoxEdit = () => {
     const dispatch = useDispatch();
     const { row, isCreate } = useSelector(({ taskCreate }) => taskCreate);
 
@@ -123,4 +123,4 @@ const DueDateBox = () => {
     );
 };
 
-export default DueDateBox;
+export default DueDateBoxEdit;

@@ -5,9 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { taskCreateActions } from "../../redux/actions";
 
-const LabelsBox = ({ Labels }) => {
+const LabelsBoxEdit = ({ Labels, row }) => {
     const dispatch = useDispatch();
-    const { row, isCreate } = useSelector(({ taskCreate }) => taskCreate);
 
     const { taskCreateUpdateLabelsIds } = bindActionCreators(
         taskCreateActions,
@@ -17,13 +16,15 @@ const LabelsBox = ({ Labels }) => {
     return (
         <Dropdown
             label={
-                <div>
-                    <FaKey />
+                <div className="flex gap-1">
+                    <div className="flex items-center">
+                        <FaKey />
+                    </div>
+                    <div>Labels</div>
                 </div>
             }
             color={"gray"}
             size="sm"
-            pill={true}
         >
             {Labels &&
                 Labels.map((label) => (
@@ -52,4 +53,4 @@ const LabelsBox = ({ Labels }) => {
     );
 };
 
-export default LabelsBox;
+export default LabelsBoxEdit;

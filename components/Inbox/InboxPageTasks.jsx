@@ -9,11 +9,11 @@ const TaskBoxEdit = dynamic(() => import("../../components/Task/TaskBoxEdit"), {
 });
 
 const InboxPageTasks = () => {
-    const { rows } = useSelector(({ tasks }) => tasks);
+    const { profile } = useSelector(({ auth }) => auth);
 
     return (
         <div className="w-3/4 mx-auto flex flex-col gap-2">
-            <TasksBox tasks={rows} />
+            <TasksBox tasks={profile?.Tasks} />
             <TaskBoxEdit />
             <TaskBoxCreate />
         </div>

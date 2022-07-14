@@ -21,14 +21,13 @@ const TaskBox = ({ task }) => {
     const handleTaskClick = (task) => {
         taskEditUpdateTitle(task.title);
         taskEditUpdateDescription(task.description);
-        taskEditUpdateLabelsIds(task.Labels.map((label) => label.id));
         taskEditUpdateLabels(task.Labels);
-        taskEditUpdatePriorityId(task.Priority.id);
+        taskEditUpdateLabelsIds(task.Labels.map((label) => label.id));
         taskEditUpdatePriority(task.Priority);
-        taskEditUpdateProjectId(task.Project.id);
+        taskEditUpdatePriorityId(task.Priority?.id);
         taskEditUpdateProject(task.Project);
+        taskEditUpdateProjectId(task.Project?.id);
         taskEditUpdateisEdit(true);
-        console.log("handleTaskClick");
     };
     return (
         <>

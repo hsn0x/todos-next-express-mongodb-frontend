@@ -1,21 +1,43 @@
-import {
-    Button,
-    Label,
-    Modal,
-    Select,
-    Textarea,
-    TextInput,
-} from "flowbite-react";
+import { Button, Modal, Textarea, TextInput } from "flowbite-react";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { requireAuthentication } from "../../HOC/requireAuthentication";
+import { axiosServer } from "../../db/axios";
 import { taskEditActions } from "../../redux/actions";
+import LabelsBoxEdit from "../Labels/LabelsBoxEdit";
+import PrioritiesBoxEdit from "../Priorities/PrioritiesBoxEdit";
+import ProjectBoxEdit from "../Project/ProjectBoxEdit";
 
 const TaskBoxEdit = () => {
     const dispatch = useDispatch();
     const { row, isEdit } = useSelector(({ taskEdit }) => taskEdit);
+
     const { profile } = useSelector(({ auth }) => auth);
+    const handleTaskUpdate = async (e) => {
+        e.preventDefault();
+        const {
+            title,
+            description,
+            ProjectId,
+            dueDate,
+            PriorityId,
+            LabelsIds,
+        } = row;
+        const taskData = {
+            title,
+            description,
+            ProjectId,
+            dueDate,
+            PriorityId,
+            LabelsIds,
+        };
+        try {
+            const data = await axiosServer.put(`/tasks/${task.id}`, taskData);
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const {
         taskEditUpdateDescription,
@@ -70,100 +92,24 @@ const TaskBoxEdit = () => {
                                     }}
                                 />
                             </form>
-                            <div className="w-1/4">
+                            <div className="w-1/4 flex flex-col gap-3">
                                 <div>
-                                    <div className="">
-                                        <Label
-                                            htmlFor="projects"
-                                            value="Change Project"
-                                        />
-                                    </div>
-                                    <div>
-                                        <Select
-                                            id="projects"
-                                            required={true}
-                                            value={row.Project.id}
-                                            onChange={(e) =>
-                                                taskEditUpdateProjectId(
-                                                    e.target.value
-                                                )
-                                            }
-                                        >
-                                            {profile.Projects &&
-                                                profile.Projects.map(
-                                                    (project) => (
-                                                        <option
-                                                            key={project.id}
-                                                            value={project.id}
-                                                        >
-                                                            {project.name}
-                                                        </option>
-                                                    )
-                                                )}
-                                        </Select>
-                                    </div>
+                                    <ProjectBoxEdit
+                                        row={row}
+                                        Projects={profile.Projects}
+                                    />
                                 </div>
                                 <div>
-                                    <div className="">
-                                        <Label
-                                            htmlFor="Labels"
-                                            value="Change Label"
-                                        />
-                                    </div>
-                                    <div>
-                                        <Select
-                                            id="Labels"
-                                            required={true}
-                                            value={row.Label?.id || ""}
-                                            onChange={(e) =>
-                                                taskEditUpdateLabelId(
-                                                    e.target.value
-                                                )
-                                            }
-                                        >
-                                            {profile.Labels &&
-                                                profile.Labels.map((label) => (
-                                                    <option
-                                                        key={label.id}
-                                                        value={label.id}
-                                                    >
-                                                        {label.name}
-                                                    </option>
-                                                ))}
-                                        </Select>
-                                    </div>
+                                    <LabelsBoxEdit
+                                        row={row}
+                                        Labels={profile.Labels}
+                                    />
                                 </div>
                                 <div>
-                                    <div className="">
-                                        <Label
-                                            htmlFor="priorities"
-                                            value="Change Priority"
-                                        />
-                                    </div>
-                                    <div>
-                                        <Select
-                                            id="priorities"
-                                            required={true}
-                                            value={row.Priority.id}
-                                            onChange={(e) =>
-                                                taskEditUpdatePriorityId(
-                                                    e.target.value
-                                                )
-                                            }
-                                        >
-                                            {profile.Priorities &&
-                                                profile.Priorities.map(
-                                                    (priority) => (
-                                                        <option
-                                                            key={priority.id}
-                                                            value={priority.id}
-                                                        >
-                                                            {priority.name}
-                                                        </option>
-                                                    )
-                                                )}
-                                        </Select>
-                                    </div>
+                                    <PrioritiesBoxEdit
+                                        row={row}
+                                        Priorities={profile.Priorities}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -172,7 +118,10 @@ const TaskBoxEdit = () => {
                         <Button color={"gray"} onClick={onClose}>
                             <span>Close</span>
                         </Button>
-                        <Button color={"gray"}>
+                        <Button
+                            color={"gray"}
+                            onClick={(e) => handleTaskUpdate(e)}
+                        >
                             <span>Save</span>
                         </Button>
                     </Modal.Footer>

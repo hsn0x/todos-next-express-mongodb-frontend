@@ -2,7 +2,7 @@ import { Checkbox, Dropdown } from "flowbite-react";
 import React from "react";
 import { FaClock } from "react-icons/fa";
 
-const RemindersBox = () => {
+const RemindersBoxCreate = () => {
     return (
         <div>
             <Dropdown
@@ -28,4 +28,4 @@ const RemindersBox = () => {
     );
 };
 
-export default RemindersBox;
+export default RemindersBoxCreate;
