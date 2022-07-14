@@ -88,11 +88,12 @@ const reducer = (state = initialState, action) => {
 export const fetchProfile = () => {
     return async (dispatch, getState) => {
         if (
-            getState.auth &&
-            getState.auth.user &&
-            getState.auth.isAuthenticated &&
-            !getState.auth.profile
+            getState().auth &&
+            getState().auth.user &&
+            getState().auth.isAuthenticated &&
+            !getState().auth.profile
         ) {
+            console.log("yes fetchProfile");
             try {
                 const { data: fetchedProfile } = await axiosServer.get(
                     "/auth/me"
@@ -129,6 +130,8 @@ export const fetchProfile = () => {
 
                 return error.response?.data;
             }
+        } else {
+            console.log("no fetchProfile");
         }
     };
 };

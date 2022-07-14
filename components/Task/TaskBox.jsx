@@ -1,9 +1,33 @@
 import { Button } from "flowbite-react";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FaChair, FaPen, FaTextHeight } from "react-icons/fa";
+import { bindActionCreators, combineReducers } from "redux";
+import { taskEditActions } from "../../redux/actions";
 
 const TaskBox = ({ task }) => {
-    const handleTaskClick = () => {
+    const dispatch = useDispatch();
+    const {
+        taskEditUpdateisEdit,
+        taskEditUpdateDescription,
+        taskEditUpdateLabelsIds,
+        taskEditUpdatePriorityId,
+        taskEditUpdateTitle,
+        taskEditUpdateProjectId,
+        taskEditUpdateLabels,
+        taskEditUpdatePriority,
+        taskEditUpdateProject,
+    } = bindActionCreators(taskEditActions, dispatch);
+    const handleTaskClick = (task) => {
+        taskEditUpdateTitle(task.title);
+        taskEditUpdateDescription(task.description);
+        taskEditUpdateLabelsIds(task.Labels.map((label) => label.id));
+        taskEditUpdateLabels(task.Labels);
+        taskEditUpdatePriorityId(task.Priority.id);
+        taskEditUpdatePriority(task.Priority);
+        taskEditUpdateProjectId(task.Project.id);
+        taskEditUpdateProject(task.Project);
+        taskEditUpdateisEdit(true);
         console.log("handleTaskClick");
     };
     return (
