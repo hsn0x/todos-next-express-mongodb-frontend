@@ -5,7 +5,7 @@ import TaskBox from "../Task/TaskBox";
 
 const TasksBox = ({ tasks }) => {
     return (
-        <div className="w-3/4 mx-auto flex flex-col gap-2">
+        <div className="">
             {tasks &&
                 tasks.map((task) => <TaskBox key={task.id} task={task} />)}
         </div>

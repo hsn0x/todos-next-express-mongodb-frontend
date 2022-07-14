@@ -1,7 +1,7 @@
 import { Button } from "flowbite-react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaChair, FaPen, FaTextHeight } from "react-icons/fa";
+import { FaCalendarAlt, FaComment, FaPen } from "react-icons/fa";
 import { bindActionCreators, combineReducers } from "redux";
 import { taskEditActions } from "../../redux/actions";
 
@@ -54,12 +54,12 @@ const TaskBox = ({ task }) => {
                     </Button>
                     <Button color={"gray"}>
                         <span>
-                            <FaChair />
+                            <FaCalendarAlt />
                         </span>
                     </Button>
                     <Button color={"gray"}>
                         <span>
-                            <FaTextHeight />
+                            <FaComment />
                         </span>
                     </Button>
                 </div>

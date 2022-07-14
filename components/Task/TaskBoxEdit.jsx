@@ -37,39 +37,35 @@ const TaskBoxEdit = () => {
                 <Modal.Body>
                     <div className="flex gap-2">
                         <form className="w-3/4">
-                            <div className="">
-                                <Label htmlFor="title" value="Title" />
-                            </div>
-
-                            <div>
-                                <TextInput
-                                    id="title"
-                                    type="text"
-                                    value={row.title}
-                                    onChange={(e) =>
-                                        taskEditUpdateTitle(e.target.value)
-                                    }
-                                />
-                            </div>
-                            <div className="">
-                                <Label
-                                    htmlFor="description"
-                                    value="Description"
-                                />
-                            </div>
-                            <div className="">
-                                <Textarea
-                                    rows={4}
-                                    id="description"
-                                    type="text"
-                                    value={row.description}
-                                    onChange={(e) =>
-                                        taskEditUpdateDescription(
-                                            e.target.value
-                                        )
-                                    }
-                                />
-                            </div>
+                            <TextInput
+                                id="title"
+                                type="text"
+                                value={row.title}
+                                onChange={(e) =>
+                                    taskEditUpdateTitle(e.target.value)
+                                }
+                                style={{
+                                    background: "transparent",
+                                    border: 0,
+                                    outline: "none",
+                                    "--tw-ring-opacity": 0,
+                                    fontSize: "1.5rem",
+                                }}
+                            />
+                            <Textarea
+                                rows={4}
+                                id="description"
+                                type="text"
+                                value={row.description}
+                                onChange={(e) =>
+                                    taskEditUpdateDescription(e.target.value)
+                                }
+                                style={{
+                                    background: "transparent",
+                                    border: 0,
+                                    "--tw-ring-opacity": 0,
+                                }}
+                            />
                         </form>
                         <div className="w-1/4">
                             <div>
