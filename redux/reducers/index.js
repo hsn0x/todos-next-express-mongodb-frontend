@@ -6,7 +6,7 @@ import users from "./users.js";
 import login from "./login.js";
 import register from "./register.js";
 
-import tasks, { fetchTasks } from "./tasks.js";
+import tasks, { fetchTasksByUserId } from "./tasks.js";
 
 import taskCreate from "./taskCreate.js";
 import taskEdit from "./taskEdit.js";
@@ -24,4 +24,4 @@ const reducers = combineReducers({
 });
 
 export default reducers;
-export { fetchTasks };
+export { fetchTasksByUserId };

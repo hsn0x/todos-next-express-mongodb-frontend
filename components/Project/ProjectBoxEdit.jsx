@@ -3,15 +3,13 @@ import React, { Profiler } from "react";
 import { FaCheck, FaDatabase, FaFlag } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { taskCreateActions } from "../../redux/actions";
+import { taskEditActions } from "../../redux/actions";
 
 const ProjectBoxEdit = ({ Projects, row }) => {
     const dispatch = useDispatch();
 
-    console.log({ Projects, row });
-
-    const { taskCreateUpdateProjectId } = bindActionCreators(
-        taskCreateActions,
+    const { taskEditUpdateProjectId } = bindActionCreators(
+        taskEditActions,
         dispatch
     );
 
@@ -32,7 +30,7 @@ const ProjectBoxEdit = ({ Projects, row }) => {
                 Projects.map((project) => (
                     <div
                         key={project.id}
-                        onClick={() => taskCreateUpdateProjectId(project.id)}
+                        onClick={() => taskEditUpdateProjectId(project.id)}
                         className="cursor-pointer"
                     >
                         <Dropdown.Item>

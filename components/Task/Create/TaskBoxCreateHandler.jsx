@@ -1,21 +1,21 @@
-import { Button } from "flowbite-react";
+import { Button, Spinner } from "flowbite-react";
 import React from "react";
 import { bindActionCreators } from "redux";
-import { taskCreateActions } from "../../redux/actions";
+import { taskCreateActions } from "../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { axiosServer } from "../../db/axios";
+import { axiosServer } from "../../../db/axios";
+import { fetchProfile } from "../../../redux/reducers/auth";
 
 const TaskBoxCreateHandler = () => {
     const dispatch = useDispatch();
-    const { row } = useSelector(({ taskCreate }) => taskCreate);
+    const { row, loading } = useSelector(({ taskCreate }) => taskCreate);
 
-    const { taskCreateUpdateisCreate } = bindActionCreators(
-        taskCreateActions,
-        dispatch
-    );
+    const { taskCreateUpdateisCreate, taskCreateUpdateLoading } =
+        bindActionCreators(taskCreateActions, dispatch);
 
     const handleTaskCreate = async (e) => {
         e.preventDefault();
+        taskCreateUpdateLoading(true);
         const {
             title,
             description,
@@ -34,8 +34,16 @@ const TaskBoxCreateHandler = () => {
         };
         try {
             const data = await axiosServer.post("/tasks", taskData);
+            const fetchData = async () => {
+                dispatch(fetchProfile());
+            };
+            fetchData();
+            console.log({ data });
+            taskCreateUpdateisCreate(false);
         } catch (error) {
             console.log(error);
+        } finally {
+            taskCreateUpdateLoading(false);
         }
     };
 
@@ -48,7 +56,7 @@ const TaskBoxCreateHandler = () => {
                     taskCreateUpdateisCreate(false);
                 }}
             >
-                Cancel
+                <div>Cancel</div>
             </Button>
             <Button
                 color={"gray"}
@@ -56,8 +64,18 @@ const TaskBoxCreateHandler = () => {
                 onClick={(e) => {
                     handleTaskCreate(e);
                 }}
+                disabled={loading}
             >
-                Add Task
+                {loading ? (
+                    <div className="flex gap-2">
+                        <div>
+                            <Spinner />
+                        </div>
+                        <div>Loading ...</div>
+                    </div>
+                ) : (
+                    <div> Add Task</div>
+                )}
             </Button>
         </div>
     );

@@ -90,10 +90,8 @@ export const fetchProfile = () => {
         if (
             getState().auth &&
             getState().auth.user &&
-            getState().auth.isAuthenticated &&
-            !getState().auth.profile
+            getState().auth.isAuthenticated
         ) {
-            console.log("yes fetchProfile");
             try {
                 const { data: fetchedProfile } = await axiosServer.get(
                     "/auth/me"
@@ -130,8 +128,6 @@ export const fetchProfile = () => {
 
                 return error.response?.data;
             }
-        } else {
-            console.log("no fetchProfile");
         }
     };
 };

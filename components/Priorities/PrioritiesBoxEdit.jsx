@@ -3,13 +3,13 @@ import React, { Profiler } from "react";
 import { FaCheck, FaFlag } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { taskCreateActions } from "../../redux/actions";
+import { taskEditActions } from "../../redux/actions";
 
 const PrioritiesBoxEdit = ({ Priorities, row }) => {
     const dispatch = useDispatch();
 
-    const { taskCreateUpdatePriorityId } = bindActionCreators(
-        taskCreateActions,
+    const { taskEditUpdatePriorityId } = bindActionCreators(
+        taskEditActions,
         dispatch
     );
 
@@ -30,7 +30,7 @@ const PrioritiesBoxEdit = ({ Priorities, row }) => {
                 Priorities.map((priority) => (
                     <div
                         key={priority.id}
-                        onClick={() => taskCreateUpdatePriorityId(priority.id)}
+                        onClick={() => taskEditUpdatePriorityId(priority.id)}
                         className="cursor-pointer"
                     >
                         <Dropdown.Item>

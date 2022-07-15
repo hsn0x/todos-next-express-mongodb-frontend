@@ -3,13 +3,13 @@ import React from "react";
 import { FaCheck, FaKey } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { taskCreateActions } from "../../redux/actions";
+import { taskEditActions } from "../../redux/actions";
 
 const LabelsBoxEdit = ({ Labels, row }) => {
     const dispatch = useDispatch();
 
-    const { taskCreateUpdateLabelsIds } = bindActionCreators(
-        taskCreateActions,
+    const { taskEditUpdateLabelsIds } = bindActionCreators(
+        taskEditActions,
         dispatch
     );
 
@@ -30,7 +30,7 @@ const LabelsBoxEdit = ({ Labels, row }) => {
                 Labels.map((label) => (
                     <div
                         key={label.id}
-                        onClick={() => taskCreateUpdateLabelsIds(label.id)}
+                        onClick={() => taskEditUpdateLabelsIds(label.id)}
                         className="cursor-pointer"
                     >
                         <Dropdown.Item>
@@ -39,6 +39,7 @@ const LabelsBoxEdit = ({ Labels, row }) => {
                                 htmlFor={`label-${label.id}`}
                             >
                                 <div>{label.name}</div>
+
                                 <div>
                                     {row.LabelsIds.length > 0 &&
                                         row.LabelsIds.includes(label.id) && (

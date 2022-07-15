@@ -80,3 +80,11 @@ export const taskCreateUpdateDueDate = (payload) => {
         });
     };
 };
+export const taskCreateUpdateLoading = (payload) => {
+    return (dispatch) => {
+        dispatch({
+            type: "TASK_CREATE_UPDATE_LOADING",
+            payload,
+        });
+    };
+};

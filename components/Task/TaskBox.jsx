@@ -8,6 +8,7 @@ import { taskEditActions } from "../../redux/actions";
 const TaskBox = ({ task }) => {
     const dispatch = useDispatch();
     const {
+        taskEditUpdateId,
         taskEditUpdateisEdit,
         taskEditUpdateDescription,
         taskEditUpdateLabelsIds,
@@ -18,11 +19,14 @@ const TaskBox = ({ task }) => {
         taskEditUpdatePriority,
         taskEditUpdateProject,
     } = bindActionCreators(taskEditActions, dispatch);
-    const handleTaskClick = (task) => {
+
+    const handleTaskShowClick = (e) => {
+        e.preventDefault();
+        taskEditUpdateId(task.id);
         taskEditUpdateTitle(task.title);
         taskEditUpdateDescription(task.description);
         taskEditUpdateLabels(task.Labels);
-        taskEditUpdateLabelsIds(task.Labels.map((label) => label.id));
+        task.Labels.map((label) => taskEditUpdateLabelsIds(label.id));
         taskEditUpdatePriority(task.Priority);
         taskEditUpdatePriorityId(task.Priority?.id);
         taskEditUpdateProject(task.Project);
@@ -33,7 +37,7 @@ const TaskBox = ({ task }) => {
         <>
             <div
                 className="flex justify-between gap-20 cursor-pointer"
-                onClick={() => handleTaskClick(task)}
+                onClick={(e) => handleTaskShowClick(e)}
             >
                 <div className="flex gap-2">
                     <div className="mt-0.5">

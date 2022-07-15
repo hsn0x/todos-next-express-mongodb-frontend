@@ -1,6 +1,4 @@
-import { Button } from "flowbite-react";
 import React from "react";
-import { FaChair, FaPen, FaTextHeight } from "react-icons/fa";
 import TaskBox from "../Task/TaskBox";
 
 const TasksBox = ({ tasks }) => {

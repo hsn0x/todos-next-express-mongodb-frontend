@@ -58,8 +58,23 @@ export const fetchTasks = () => {
 
         tasksFetchRequest();
         try {
-            const { data } = await axiosServer.get("/tasks");
-            console.log({ data });
+            const { data } = await axiosServer.get(`/tasks`);
+            tasksFetchSuccess(data);
+        } catch (error) {
+            tasksFetchFail(getError(error));
+        }
+    };
+};
+export const fetchTasksByUserId = () => {
+    return async (dispatch, getState) => {
+        const { tasksFetchFail, tasksFetchSuccess, tasksFetchRequest } =
+            bindActionCreators(tasksActions, dispatch);
+
+        tasksFetchRequest();
+        try {
+            const { data } = await axiosServer.get(
+                `/tasks/UserId/${getState().auth.user.id}`
+            );
             tasksFetchSuccess(data);
         } catch (error) {
             tasksFetchFail(getError(error));

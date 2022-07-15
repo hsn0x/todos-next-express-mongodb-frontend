@@ -8,6 +8,7 @@ const TASK_CREATE_UPDATE_PRIORITY = "TASK_CREATE_UPDATE_PRIORITY";
 const TASK_CREATE_UPDATE_PROJECT_ID = "TASK_CREATE_UPDATE_PROJECT_ID";
 const TASK_CREATE_UPDATE_PROJECT = "TASK_CREATE_UPDATE_PROJECT";
 const TASK_CREATE_UPDATE_DUE_DATE = "TASK_CREATE_UPDATE_DUE_DATE";
+const TASK_CREATE_UPDATE_LOADING = "TASK_CREATE_UPDATE_LOADING";
 
 const initialState = {
     row: {
@@ -22,6 +23,7 @@ const initialState = {
         dueDate: null,
     },
     isCreate: false,
+    loading: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -83,6 +85,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 row: { ...state.row, dueDate: action.payload },
+            };
+        case TASK_CREATE_UPDATE_LOADING:
+            return {
+                ...state,
+                loading: action.payload,
             };
         default:
             return state;

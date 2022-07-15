@@ -1,8 +1,3 @@
-import { bindActionCreators } from "redux";
-import { axiosServer } from "../../db/axios";
-import { getError } from "../../utils/error";
-import { taskActions } from "../actions";
-
 const TASK_FETCH_REQUEST = "TASK_FETCH_REQUEST";
 const TASK_FETCH_SUCCESS = "TASK_FETCH_SUCCESS";
 const TASK_FETCH_FAIL = "TASK_FETCH_FAIL";
@@ -49,22 +44,6 @@ const reducer = (state = initialState, action) => {
         default:
             return state;
     }
-};
-
-export const fetchTasks = () => {
-    return async (dispatch, getState) => {
-        const { taskFetchFail, taskFetchSuccess, taskFetchRequest } =
-            bindActionCreators(taskActions, dispatch);
-
-        taskFetchRequest();
-        try {
-            const { data } = await axiosServer.get("/task");
-            console.log({ data });
-            taskFetchSuccess(data);
-        } catch (error) {
-            taskFetchFail(getError(error));
-        }
-    };
 };
 
 export default reducer;

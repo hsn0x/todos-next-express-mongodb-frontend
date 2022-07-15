@@ -6,6 +6,14 @@ export const taskEditUpdateisEdit = (payload) => {
         });
     };
 };
+export const taskEditUpdateId = (payload) => {
+    return (dispatch) => {
+        dispatch({
+            type: "TASK_EDIT_UPDATE_ID",
+            payload,
+        });
+    };
+};
 export const taskEditUpdateTitle = (payload) => {
     return (dispatch) => {
         dispatch({
@@ -14,7 +22,6 @@ export const taskEditUpdateTitle = (payload) => {
         });
     };
 };
-
 export const taskEditUpdateDescription = (payload) => {
     return (dispatch) => {
         dispatch({
@@ -68,6 +75,14 @@ export const taskEditUpdateProject = (payload) => {
     return (dispatch) => {
         dispatch({
             type: "TASK_EDIT_UPDATE_PROJECT",
+            payload,
+        });
+    };
+};
+export const taskEditUpdateLoading = (payload) => {
+    return (dispatch) => {
+        dispatch({
+            type: "TASK_EDIT_UPDATE_LOADING",
             payload,
         });
     };

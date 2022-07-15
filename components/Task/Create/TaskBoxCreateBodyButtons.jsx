@@ -1,9 +1,9 @@
 import React from "react";
-import DueDateBoxCreate from "../DueDate/DueDateBoxCreate";
-import LabelsBoxCreate from "../Labels/LabelsBoxCreate";
-import PrioritiesBoxCreate from "../Priorities/PrioritiesBoxCreate";
-import ProjectBoxCreate from "../Project/ProjectBoxCreate";
-import RemindersBoxCreate from "../Reminders/RemindersBoxCreate";
+import DueDateBoxCreate from "../../DueDate/DueDateBoxCreate";
+import LabelsBoxCreate from "../../Labels/LabelsBoxCreate";
+import PrioritiesBoxCreate from "../../Priorities/PrioritiesBoxCreate";
+import ProjectBoxCreate from "../../Project/ProjectBoxCreate";
+import RemindersBoxCreate from "../../Reminders/RemindersBoxCreate";
 import { useSelector, useDispatch } from "react-redux";
 
 const TaskBoxCreateBodyButtons = () => {
