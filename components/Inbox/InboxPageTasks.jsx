@@ -4,8 +4,8 @@ import TasksBox from "../Tasks/TasksBox";
 import dynamic from "next/dynamic";
 import TaskBoxCreate from "../Task/Create/TaskBoxCreate";
 
-const TaskBoxEdit = dynamic(
-    () => import("../../components/Task/Edit/TaskBoxEdit"),
+const TaskBoxEditModal = dynamic(
+    () => import("../../components/Task/Edit/TaskBoxEditModal"),
     {
         ssr: false,
     }
@@ -18,9 +18,8 @@ const InboxPageTasks = () => {
 
     return (
         <div className="w-3/4 mx-auto flex flex-col gap-2">
-            <TaskBoxCreate />
             {profile && <TasksBox tasks={profile.Tasks} />}
-            <TaskBoxEdit />
+            <TaskBoxEditModal />
             <TaskBoxCreate />
         </div>
     );

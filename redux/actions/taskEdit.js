@@ -1,4 +1,4 @@
-export const taskEditUpdateisEdit = (payload) => {
+export const taskEditUpdateisEditModal = (payload) => {
     return (dispatch) => {
         dispatch({
             type: "TASK_EDIT_UPDATE_IS_EDIT",
@@ -75,6 +75,14 @@ export const taskEditUpdateProject = (payload) => {
     return (dispatch) => {
         dispatch({
             type: "TASK_EDIT_UPDATE_PROJECT",
+            payload,
+        });
+    };
+};
+export const taskEditUpdateDueDate = (payload) => {
+    return (dispatch) => {
+        dispatch({
+            type: "TASK_EDIT_UPDATE_DUE_DATE",
             payload,
         });
     };

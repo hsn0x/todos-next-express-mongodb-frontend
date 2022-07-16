@@ -6,17 +6,15 @@ import { axiosServer } from "../../../db/axios";
 import { taskEditActions } from "../../../redux/actions";
 import { fetchProfile } from "../../../redux/reducers/auth";
 
-const TaskBoxEditFooter = () => {
+const TaskBoxEditModalFooter = () => {
     const dispatch = useDispatch();
     const { row, loading } = useSelector(({ taskEdit }) => taskEdit);
 
-    const { taskEditUpdateisEdit, taskEditUpdateLoading } = bindActionCreators(
-        taskEditActions,
-        dispatch
-    );
+    const { taskEditUpdateisEditModal, taskEditUpdateLoading } =
+        bindActionCreators(taskEditActions, dispatch);
 
     const onClose = () => {
-        taskEditUpdateisEdit(false);
+        taskEditUpdateisEditModal(false);
     };
 
     const handleTaskUpdate = async (e) => {
@@ -42,7 +40,7 @@ const TaskBoxEditFooter = () => {
         try {
             const data = await axiosServer.put(`/tasks/${row.id}`, taskData);
             dispatch(fetchProfile());
-            taskEditUpdateisEdit(false);
+            taskEditUpdateisEditModal(false);
         } catch (error) {
             console.log(error);
         } finally {
@@ -71,4 +69,4 @@ const TaskBoxEditFooter = () => {
     );
 };
 
-export default TaskBoxEditFooter;
+export default TaskBoxEditModalFooter;

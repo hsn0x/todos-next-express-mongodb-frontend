@@ -1,13 +1,11 @@
-import { Dropdown, TextInput } from "flowbite-react";
-import React, { useState } from "react";
+import { Dropdown } from "flowbite-react";
+import React from "react";
 import {
     FaCalendar,
     FaCalendarAlt,
     FaCalendarPlus,
     FaChair,
-    FaCircleNotch,
     FaDatabase,
-    FaMinus,
     FaStopCircle,
     FaSun,
 } from "react-icons/fa";
@@ -16,34 +14,54 @@ import {
     startOfToday,
     nextSaturday,
     nextMonday,
+    parseISO,
+    format,
 } from "date-fns";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import { bindActionCreators } from "redux";
 import { useSelector, useDispatch } from "react-redux";
-import { taskCreateActions } from "../../redux/actions";
+import { taskEditActions } from "../../redux/actions";
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/dist/style.css";
 
 const DueDateBoxEdit = () => {
     const dispatch = useDispatch();
-    const { row, isCreate } = useSelector(({ taskCreate }) => taskCreate);
+    const { row, isEdit } = useSelector(({ taskEdit }) => taskEdit);
 
-    const { taskCreateUpdateDueDate } = bindActionCreators(
-        taskCreateActions,
+    const { taskEditUpdateDueDate } = bindActionCreators(
+        taskEditActions,
         dispatch
     );
 
+    let footer = <p>Please pick a day.</p>;
+    if (row.dueDate) {
+        footer = (
+            <p>
+                You picked {format(parseISO(row.dueDate, "MM/dd/yyyy"), "PP")}.
+            </p>
+        );
+    }
+
     return (
-        <div>
+        <div className="flex flex-col gap-1">
+            <div className="">Due date</div>
+
             <Dropdown
-                placement="left"
                 color={"gray"}
-                size="sm"
+                size="xs"
+                pill={true}
                 label={
                     <div className="flex gap-1">
                         <div className="flex items-center">
-                            <FaDatabase />
+                            <FaCalendarAlt />
                         </div>
-                        <div>Due Date</div>
+                        <div>
+                            {row.dueDate
+                                ? format(
+                                      parseISO(row.dueDate, "MM/dd/yyyy"),
+                                      "PP"
+                                  )
+                                : "Due Date"}
+                        </div>
                     </div>
                 }
             >
@@ -110,11 +128,13 @@ const DueDateBoxEdit = () => {
                         </div>
                     </div>
                     <div className="border-t-2">
-                        <DatePicker
-                            onChange={(date) =>
-                                taskCreateUpdateDueDate(date.toISOString())
+                        <DayPicker
+                            mode="single"
+                            selected={row.dueDate}
+                            onSelect={(date) =>
+                                taskEditUpdateDueDate(date.toISOString())
                             }
-                            inline
+                            footer={footer}
                         />
                     </div>
                 </div>

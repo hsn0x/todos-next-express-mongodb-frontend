@@ -1,15 +1,16 @@
 import { Button } from "flowbite-react";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { FaCalendarAlt, FaComment, FaPen } from "react-icons/fa";
-import { bindActionCreators, combineReducers } from "redux";
+import TaskBoxInfo from "./TaskBoxInfo";
+import TaskBoxButtons from "./TaskBoxButtons";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 import { taskEditActions } from "../../redux/actions";
 
 const TaskBox = ({ task }) => {
     const dispatch = useDispatch();
     const {
         taskEditUpdateId,
-        taskEditUpdateisEdit,
+        taskEditUpdateisEditModal,
         taskEditUpdateDescription,
         taskEditUpdateLabelsIds,
         taskEditUpdatePriorityId,
@@ -18,9 +19,12 @@ const TaskBox = ({ task }) => {
         taskEditUpdateLabels,
         taskEditUpdatePriority,
         taskEditUpdateProject,
+        taskEditUpdateDueDate,
+        taskEditUpdateLoading,
     } = bindActionCreators(taskEditActions, dispatch);
 
     const handleTaskShowClick = (e) => {
+        taskEditUpdateLoading(true);
         e.preventDefault();
         taskEditUpdateId(task.id);
         taskEditUpdateTitle(task.title);
@@ -31,44 +35,21 @@ const TaskBox = ({ task }) => {
         taskEditUpdatePriorityId(task.Priority?.id);
         taskEditUpdateProject(task.Project);
         taskEditUpdateProjectId(task.Project?.id);
-        taskEditUpdateisEdit(true);
+        taskEditUpdateisEditModal(true);
+        taskEditUpdateDueDate(task.due_date);
+        taskEditUpdateLoading(false);
     };
+
     return (
-        <>
+        <div>
             <div
-                className="flex justify-between gap-20 cursor-pointer"
+                className="cursor-pointer"
                 onClick={(e) => handleTaskShowClick(e)}
             >
-                <div className="flex gap-2">
-                    <div className="mt-0.5">
-                        <input type="radio" name="" id="" />
-                    </div>
-                    <div>
-                        <div className="text-lg">{task.title}</div>
-                        <div className="text-xs">{task.description}</div>
-                    </div>
-                </div>
-
-                <div className="flex gap-1">
-                    <Button color={"gray"}>
-                        <span>
-                            <FaPen />
-                        </span>
-                    </Button>
-                    <Button color={"gray"}>
-                        <span>
-                            <FaCalendarAlt />
-                        </span>
-                    </Button>
-                    <Button color={"gray"}>
-                        <span>
-                            <FaComment />
-                        </span>
-                    </Button>
-                </div>
+                <TaskBoxInfo task={task} />
             </div>
-            <div className="mt-1 border-b-2 border-gray-100 h-2"></div>
-        </>
+            <div className="my-2 border-b-2 border-gray-100 h-2"></div>
+        </div>
     );
 };
 

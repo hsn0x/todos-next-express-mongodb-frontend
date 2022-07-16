@@ -1,13 +1,11 @@
-import { Dropdown, TextInput } from "flowbite-react";
-import React, { useState } from "react";
+import { Dropdown } from "flowbite-react";
+import React from "react";
 import {
     FaCalendar,
     FaCalendarAlt,
     FaCalendarPlus,
     FaChair,
-    FaCircleNotch,
     FaDatabase,
-    FaMinus,
     FaStopCircle,
     FaSun,
 } from "react-icons/fa";
@@ -17,22 +15,28 @@ import {
     nextSaturday,
     nextMonday,
     parseISO,
+    format,
 } from "date-fns";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { bindActionCreators } from "redux";
 import { useSelector, useDispatch } from "react-redux";
-import { taskCreateActions } from "../../redux/actions";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import { format } from "date-fns";
+import { taskEditActions } from "../../redux/actions";
 
-const DueDateBoxCreate = () => {
+const DueDateBoxButton = () => {
     const dispatch = useDispatch();
-    const { row, isCreate } = useSelector(({ taskCreate }) => taskCreate);
+    const { row, isEdit } = useSelector(({ taskEdit }) => taskEdit);
 
-    const { taskCreateUpdateDueDate } = bindActionCreators(
-        taskCreateActions,
+    const { taskEditUpdateDueDate } = bindActionCreators(
+        taskEditActions,
         dispatch
     );
+
+    const taskDueDateHandler = (e) => {
+        e.stopPropagation();
+    };
 
     let footer = <p>Please pick a day.</p>;
     if (row.dueDate) {
@@ -44,21 +48,20 @@ const DueDateBoxCreate = () => {
     }
 
     return (
-        <div>
+        <div onClick={(e) => taskDueDateHandler(e)}>
             <Dropdown
-                placement="left"
                 color={"gray"}
                 size="sm"
+                pill={true}
                 label={
                     <div className="flex gap-1">
                         <div className="flex items-center">
-                            <FaDatabase />
+                            <FaCalendarAlt />
                         </div>
-                        <div>Due Date</div>
                     </div>
                 }
             >
-                <div className="wss-64">
+                <div className="w-64">
                     <div className="border-t-2">
                         <div className="p-2 cursor-pointer hover:bg-gray-100 flex justify-between ">
                             <div className="flex gap-1">
@@ -120,12 +123,12 @@ const DueDateBoxCreate = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="border-t-2 mt-2">
+                    <div className="border-t-2">
                         <DayPicker
                             mode="single"
                             selected={row.dueDate}
                             onSelect={(date) =>
-                                taskCreateUpdateDueDate(date.toISOString())
+                                taskEditUpdateDueDate(date.toISOString())
                             }
                             footer={footer}
                         />
@@ -136,4 +139,4 @@ const DueDateBoxCreate = () => {
     );
 };
 
-export default DueDateBoxCreate;
+export default DueDateBoxButton;

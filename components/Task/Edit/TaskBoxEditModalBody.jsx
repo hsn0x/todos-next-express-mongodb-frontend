@@ -3,11 +3,12 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { taskEditActions } from "../../../redux/actions";
+import DueDateBoxEdit from "../../DueDate/DueDateBoxEdit";
 import LabelsBoxEdit from "../../Labels/LabelsBoxEdit";
 import PrioritiesBoxEdit from "../../Priorities/PrioritiesBoxEdit";
 import ProjectBoxEdit from "../../Project/ProjectBoxEdit";
 
-const TaskBoxEditBody = () => {
+const TaskBoxEditModalBody = () => {
     const dispatch = useDispatch();
 
     const { row } = useSelector(({ taskEdit }) => taskEdit);
@@ -59,18 +60,25 @@ const TaskBoxEditBody = () => {
                                     Projects={profile.Projects}
                                 />
                             </div>
+                            <div className="h-0.5 bg-gray-100"></div>
                             <div>
-                                <LabelsBoxEdit
-                                    row={row}
-                                    Labels={profile.Labels}
-                                />
+                                <DueDateBoxEdit row={row} />
                             </div>
+                            <div className="h-0.5 bg-gray-100"></div>
                             <div>
                                 <PrioritiesBoxEdit
                                     row={row}
                                     Priorities={profile.Priorities}
                                 />
                             </div>
+                            <div className="h-0.5 bg-gray-100"></div>
+                            <div>
+                                <LabelsBoxEdit
+                                    row={row}
+                                    Labels={profile.Labels}
+                                />
+                            </div>
+                            <div className="h-0.5 bg-gray-100"></div>
                         </div>
                     </div>
                 </Modal.Body>
@@ -79,4 +87,4 @@ const TaskBoxEditBody = () => {
     );
 };
 
-export default TaskBoxEditBody;
+export default TaskBoxEditModalBody;

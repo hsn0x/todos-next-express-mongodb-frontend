@@ -14,36 +14,42 @@ const ProjectBoxEdit = ({ Projects, row }) => {
     );
 
     return (
-        <Dropdown
-            label={
-                <div className="flex gap-1">
-                    <div className="flex items-center">
-                        <FaDatabase />
+        <div className="flex flex-col gap-1">
+            <div className="text-lg">Project</div>
+
+            <Dropdown
+                label={
+                    <div className="flex gap-1">
+                        <div className="flex items-center">
+                            <FaDatabase />
+                        </div>
+                        <div>{row.Project?.name || "Project"}</div>
                     </div>
-                    <div>{row.Project?.name || "Project"}</div>
-                </div>
-            }
-            color={"gray"}
-            size="sm"
-        >
-            {Projects &&
-                Projects.map((project) => (
-                    <div
-                        key={project.id}
-                        onClick={() => taskEditUpdateProjectId(project.id)}
-                        className="cursor-pointer"
-                    >
-                        <Dropdown.Item>
-                            <div className="flex justify-between w-52">
-                                <div>{project.name}</div>
-                                <div>
-                                    {row.ProjectId == project.id && <FaCheck />}
+                }
+                color={"gray"}
+                size="xs"
+            >
+                {Projects &&
+                    Projects.map((project) => (
+                        <div
+                            key={project.id}
+                            onClick={() => taskEditUpdateProjectId(project.id)}
+                            className="cursor-pointer"
+                        >
+                            <Dropdown.Item>
+                                <div className="flex justify-between w-52">
+                                    <div>{project.name}</div>
+                                    <div>
+                                        {row.ProjectId == project.id && (
+                                            <FaCheck />
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
-                        </Dropdown.Item>
-                    </div>
-                ))}
-        </Dropdown>
+                            </Dropdown.Item>
+                        </div>
+                    ))}
+            </Dropdown>
+        </div>
     );
 };
 

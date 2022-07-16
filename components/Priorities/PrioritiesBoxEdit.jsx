@@ -14,38 +14,44 @@ const PrioritiesBoxEdit = ({ Priorities, row }) => {
     );
 
     return (
-        <Dropdown
-            label={
-                <div className="flex gap-1">
-                    <div className="flex items-center">
-                        <FaFlag />
+        <div className="flex flex-col gap-1">
+            <div className="text-lg">Priority</div>
+
+            <Dropdown
+                label={
+                    <div className="flex gap-1">
+                        <div className="flex items-center">
+                            <FaFlag />
+                        </div>
+                        <div>{row.Priority?.name || "Priority"}</div>
                     </div>
-                    <div>{row.Priority?.name || "Priority"}</div>
-                </div>
-            }
-            color={"gray"}
-            size="sm"
-        >
-            {Priorities &&
-                Priorities.map((priority) => (
-                    <div
-                        key={priority.id}
-                        onClick={() => taskEditUpdatePriorityId(priority.id)}
-                        className="cursor-pointer"
-                    >
-                        <Dropdown.Item>
-                            <div className="flex justify-between w-52">
-                                <div>{priority.name}</div>
-                                <div>
-                                    {row.PriorityId == priority.id && (
-                                        <FaCheck />
-                                    )}
+                }
+                color={"gray"}
+                size="xs"
+            >
+                {Priorities &&
+                    Priorities.map((priority) => (
+                        <div
+                            key={priority.id}
+                            onClick={() =>
+                                taskEditUpdatePriorityId(priority.id)
+                            }
+                            className="cursor-pointer"
+                        >
+                            <Dropdown.Item>
+                                <div className="flex justify-between w-52">
+                                    <div>{priority.name}</div>
+                                    <div>
+                                        {row.PriorityId == priority.id && (
+                                            <FaCheck />
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
-                        </Dropdown.Item>
-                    </div>
-                ))}
-        </Dropdown>
+                            </Dropdown.Item>
+                        </div>
+                    ))}
+            </Dropdown>
+        </div>
     );
 };
 
