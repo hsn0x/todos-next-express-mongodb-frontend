@@ -1,17 +1,34 @@
 import React from "react";
 import { Avatar, Dropdown } from "flowbite-react";
 import { format, parseISO } from "date-fns";
-import {
-    FaCircle,
-    FaCommentDots,
-    FaPenAlt,
-    FaRegCircle,
-    FaRegCommentDots,
-    FaRegFrownOpen,
-    FaTrash,
-} from "react-icons/fa";
+import { FaCommentDots, FaPenAlt, FaRegCircle, FaTrash } from "react-icons/fa";
+import { bindActionCreators } from "redux";
+import { useSelector, useDispatch } from "react-redux";
+import { commentEditActions } from "../../redux/actions";
+import CommentBoxEdit from "./Edit/CommentBoxEdit";
 
 const CommentBox = ({ comment }) => {
+    const dispatch = useDispatch();
+    const { row: taskEditRow } = useSelector(({ taskEdit }) => taskEdit);
+
+    const {
+        commentEditUpdateContent,
+        commentEditUpdateId,
+        commentEditUpdateLoading,
+        commentEditUpdateTaskId,
+        commentEditUpdateisEdit,
+        commentEditUpdateisEditModal,
+    } = bindActionCreators(commentEditActions, dispatch);
+
+    const handleCommentEditShow = () => {
+        commentEditUpdateLoading(true);
+        commentEditUpdateContent(comment.content);
+        commentEditUpdateId(comment.id);
+        commentEditUpdateTaskId(taskEditRow.id);
+        commentEditUpdateisEdit(true);
+        commentEditUpdateLoading(false);
+    };
+
     return (
         <div className="flex gap-3">
             <div className="">
@@ -37,7 +54,9 @@ const CommentBox = ({ comment }) => {
                     <div>
                         <Dropdown label={<FaRegCircle />} color="gray">
                             <div className="w-80">
-                                <Dropdown.Item>
+                                <Dropdown.Item
+                                    onClick={() => handleCommentEditShow()}
+                                >
                                     <div className="flex gap-3">
                                         <div className="flex items-center">
                                             <FaCommentDots size="20" />
