@@ -9,7 +9,6 @@ const InboxPage = ({ authUser }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log(authUser);
         const fetchData = async () => {
             dispatch(updateAuth(authUser));
             dispatch(updateIsAuthenticated(!!authUser));

@@ -12,14 +12,13 @@ const TaskBoxEditModal = dynamic(
 );
 
 const InboxPageTasks = () => {
-    const { rows } = useSelector(({ tasks }) => tasks);
     const { profile } = useSelector(({ auth }) => auth);
-    console.log({ profile });
+    const { isEdit } = useSelector(({ taskEdit }) => taskEdit);
 
     return (
         <div className="w-3/4 mx-auto flex flex-col gap-2">
             {profile && <TasksBox tasks={profile.Tasks} />}
-            <TaskBoxEditModal />
+            {isEdit && <TaskBoxEditModal />}
             <TaskBoxCreate />
         </div>
     );

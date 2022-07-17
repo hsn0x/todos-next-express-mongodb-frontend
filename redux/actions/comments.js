@@ -1,11 +1,11 @@
-const commentsFetchRequest = () => {
+export const commentsFetchRequest = () => {
     return (dispatch) => {
         dispatch({
             type: "COMMENTS_FETCH_REQUEST",
         });
     };
 };
-const commentsFetchSuccess = (payload) => {
+export const commentsFetchSuccess = (payload) => {
     return (dispatch) => {
         dispatch({
             type: "COMMENTS_FETCH_SUCCESS",
@@ -13,7 +13,7 @@ const commentsFetchSuccess = (payload) => {
         });
     };
 };
-const commentsFetchFail = (payload) => {
+export const commentsFetchFail = (payload) => {
     return (dispatch) => {
         dispatch({
             type: "COMMENTS_FETCH_FAIL",
@@ -21,65 +21,52 @@ const commentsFetchFail = (payload) => {
         });
     };
 };
-const commentsCreateRequest = () => {
+export const commentsCreateRequest = () => {
     return (dispatch) => {
         dispatch({
             type: "COMMENTS_CREATE_REQUEST",
         });
     };
 };
-const commentsCreateSuccess = () => {
+export const commentsCreateSuccess = () => {
     return (dispatch) => {
         dispatch({
             type: "COMMENTS_CREATE_SUCCESS",
         });
     };
 };
-const commentsCreateFail = () => {
+export const commentsCreateFail = () => {
     return (dispatch) => {
         dispatch({
             type: "COMMENTS_CREATE_FAIL",
         });
     };
 };
-const commentsDeleteRequest = () => {
+export const commentsDeleteRequest = () => {
     return (dispatch) => {
         dispatch({
             type: "COMMENTS_DELETE_REQUEST",
         });
     };
 };
-const commentsDeleteSuccess = () => {
+export const commentsDeleteSuccess = () => {
     return (dispatch) => {
         dispatch({
             type: "COMMENTS_DELETE_SUCCESS",
         });
     };
 };
-const commentsDeleteFail = () => {
+export const commentsDeleteFail = () => {
     return (dispatch) => {
         dispatch({
             type: "COMMENTS_DELETE_FAIL",
         });
     };
 };
-const commentsDeleteReset = () => {
+export const commentsDeleteReset = () => {
     return (dispatch) => {
         dispatch({
             type: "COMMENTS_DELETE_RESET",
         });
     };
-};
-
-export {
-    commentsFetchRequest,
-    commentsFetchSuccess,
-    commentsFetchFail,
-    commentsCreateRequest,
-    commentsCreateSuccess,
-    commentsCreateFail,
-    commentsDeleteRequest,
-    commentsDeleteSuccess,
-    commentsDeleteFail,
-    commentsDeleteReset,
 };

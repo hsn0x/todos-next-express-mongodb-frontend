@@ -88,5 +88,24 @@ export const fetchCommentsByUserId = () => {
         }
     };
 };
+export const fetchCommentsByTaskId = () => {
+    return async (dispatch, getState) => {
+        const {
+            commentsFetchFail,
+            commentsFetchSuccess,
+            commentsFetchRequest,
+        } = bindActionCreators(commentsActions, dispatch);
+
+        commentsFetchRequest();
+        try {
+            const { data } = await axiosServer.get(
+                `/comments/TaskId/${getState().taskEdit.row.id}`
+            );
+            commentsFetchSuccess(data);
+        } catch (error) {
+            commentsFetchFail(getError(error));
+        }
+    };
+};
 
 export default reducer;

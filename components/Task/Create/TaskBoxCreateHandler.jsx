@@ -38,7 +38,6 @@ const TaskBoxCreateHandler = () => {
                 dispatch(fetchProfile());
             };
             fetchData();
-            console.log({ data });
             taskCreateUpdateisCreate(false);
         } catch (error) {
             console.log(error);

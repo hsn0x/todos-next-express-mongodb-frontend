@@ -14,6 +14,7 @@ async function loginRoute(req, res) {
             Labels: [],
             Priorities: [],
             Tasks: [],
+            Comments: [],
         };
         await req.session.save();
         return res.send({ ok: true, message: "Logged in" });

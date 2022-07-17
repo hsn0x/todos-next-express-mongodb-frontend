@@ -1,29 +1,27 @@
-import { Avatar, Textarea, TextInput } from "flowbite-react";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCommentsByTaskId } from "../../../redux/reducers/comments";
+import CommentBoxCreate from "../../Comment/Create/CommentBoxCreate";
+import CommentsBox from "../../Comments/CommentsBox";
+import TaskBoxEditModalCommentTitle from "./TaskBoxEditModalCommentTitle";
 
 const TaskBoxEditModalComment = () => {
+    const dispatch = useDispatch();
+    const { rows } = useSelector(({ comments }) => comments);
+
+    useEffect(() => {
+        dispatch(fetchCommentsByTaskId());
+    }, []);
+
     return (
-        <form className="flex gap-4">
-            <div>
-                <Avatar
-                    img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                    rounded={true}
-                    bordered={true}
-                />
-            </div>
-            <div className="w-full">
-                <TextInput
-                    id="comment"
-                    type="text"
-                    // onChange={(e) => taskEditUpdateComment(e.target.value)}
-                    placeholder="Comment"
-                    style={{
-                        backgroundColor: "transparent",
-                        borderRadius: "999999px",
-                    }}
-                />
-            </div>
-        </form>
+        <div className="flex flex-col gap-3">
+            <TaskBoxEditModalCommentTitle commentsCount={rows.length} />
+
+            <div className="h-0.5 bg-gray-200 mb-3"></div>
+
+            <CommentsBox comments={rows} />
+            <CommentBoxCreate />
+        </div>
     );
 };
 
