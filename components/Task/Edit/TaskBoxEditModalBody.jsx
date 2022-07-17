@@ -7,6 +7,9 @@ import DueDateBoxEdit from "../../DueDate/DueDateBoxEdit";
 import LabelsBoxEdit from "../../Labels/LabelsBoxEdit";
 import PrioritiesBoxEdit from "../../Priorities/PrioritiesBoxEdit";
 import ProjectBoxEdit from "../../Project/ProjectBoxEdit";
+import TaskBoxEditModalComment from "./TaskBoxEditModalComment";
+import TaskBoxEditModalMain from "./TaskBoxEditModalMain";
+import TaskBoxEditModalRight from "./TaskBoxEditModalRight";
 
 const TaskBoxEditModalBody = () => {
     const dispatch = useDispatch();
@@ -21,64 +24,18 @@ const TaskBoxEditModalBody = () => {
         <>
             {profile && (
                 <Modal.Body>
-                    <div className="flex gap-2">
-                        <form className="w-3/4">
-                            <TextInput
-                                id="title"
-                                type="text"
-                                value={row.title}
-                                onChange={(e) =>
-                                    taskEditUpdateTitle(e.target.value)
-                                }
-                                style={{
-                                    background: "transparent",
-                                    border: 0,
-                                    outline: "none",
-                                    "--tw-ring-opacity": 0,
-                                    fontSize: "1.5rem",
-                                }}
-                            />
-                            <Textarea
-                                rows={4}
-                                id="description"
-                                type="text"
-                                value={row.description}
-                                onChange={(e) =>
-                                    taskEditUpdateDescription(e.target.value)
-                                }
-                                style={{
-                                    background: "transparent",
-                                    border: 0,
-                                    "--tw-ring-opacity": 0,
-                                }}
-                            />
-                        </form>
-                        <div className="w-1/4 flex flex-col gap-3">
+                    <div className="flex gap-10">
+                        <div className="w-3/4 flex flex-col gap-2">
                             <div>
-                                <ProjectBoxEdit
-                                    row={row}
-                                    Projects={profile.Projects}
-                                />
+                                <TaskBoxEditModalMain />
                             </div>
-                            <div className="h-0.5 bg-gray-100"></div>
+                            <div className="h-0.5 bg-gray-200 my-5"></div>
                             <div>
-                                <DueDateBoxEdit row={row} />
+                                <TaskBoxEditModalComment />
                             </div>
-                            <div className="h-0.5 bg-gray-100"></div>
-                            <div>
-                                <PrioritiesBoxEdit
-                                    row={row}
-                                    Priorities={profile.Priorities}
-                                />
-                            </div>
-                            <div className="h-0.5 bg-gray-100"></div>
-                            <div>
-                                <LabelsBoxEdit
-                                    row={row}
-                                    Labels={profile.Labels}
-                                />
-                            </div>
-                            <div className="h-0.5 bg-gray-100"></div>
+                        </div>
+                        <div className="w-1/4 ">
+                            <TaskBoxEditModalRight />
                         </div>
                     </div>
                 </Modal.Body>

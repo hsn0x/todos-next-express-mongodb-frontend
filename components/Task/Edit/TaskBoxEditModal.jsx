@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { taskEditActions } from "../../../redux/actions";
 import TaskBoxEditModalBody from "./TaskBoxEditModalBody";
+import TaskBoxEditModalComment from "./TaskBoxEditModalComment";
 import TaskBoxEditModalFooter from "./TaskBoxEditModalFooter";
 import TaskBoxEditModalHeader from "./TaskBoxEditModalHeader";
 

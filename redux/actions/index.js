@@ -8,3 +8,8 @@ export * as tasksActions from "./tasks.js";
 
 export * as taskCreateActions from "./taskCreate.js";
 export * as taskEditActions from "./taskEdit.js";
+
+export * as commentsActions from "./comments.js";
+
+export * as commentCreateActions from "./commentCreate.js";
+export * as commentEditActions from "./commentEdit.js";
