@@ -26,15 +26,15 @@ const TaskBox = ({ task }) => {
     const handleTaskShowClick = (e) => {
         taskEditUpdateLoading(true);
         e.preventDefault();
-        taskEditUpdateId(task.id);
+        taskEditUpdateId(task._id);
         taskEditUpdateTitle(task.title);
         taskEditUpdateDescription(task.description);
         taskEditUpdateLabels(task.Labels);
-        task.Labels.map((label) => taskEditUpdateLabelsIds(label.id));
+        task.Labels.map((label) => taskEditUpdateLabelsIds(label._id));
         taskEditUpdatePriority(task.Priority);
-        taskEditUpdatePriorityId(task.Priority?.id);
+        taskEditUpdatePriorityId(task.Priority?._id);
         taskEditUpdateProject(task.Project);
-        taskEditUpdateProjectId(task.Project?.id);
+        taskEditUpdateProjectId(task.Project?._id);
         taskEditUpdateisEditModal(true);
         taskEditUpdateDueDate(task.due_date);
         taskEditUpdateLoading(false);

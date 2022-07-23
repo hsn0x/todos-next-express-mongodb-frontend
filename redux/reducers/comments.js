@@ -80,7 +80,7 @@ export const fetchCommentsByUserId = () => {
         commentsFetchRequest();
         try {
             const { data } = await axiosServer.get(
-                `/comments/UserId/${getState().auth.user.id}`
+                `/comments/UserId/${getState().auth.user._id}`
             );
             commentsFetchSuccess(data);
         } catch (error) {
@@ -99,7 +99,7 @@ export const fetchCommentsByTaskId = () => {
         commentsFetchRequest();
         try {
             const { data } = await axiosServer.get(
-                `/comments/TaskId/${getState().taskEdit.row.id}`
+                `/comments/TaskId/${getState().taskEdit.row._id}`
             );
             commentsFetchSuccess(data);
         } catch (error) {

@@ -5,7 +5,7 @@ const TasksBox = ({ tasks }) => {
     return (
         <div className="">
             {tasks &&
-                tasks.map((task) => <TaskBox key={task.id} task={task} />)}
+                tasks.map((task) => <TaskBox key={task._id} task={task} />)}
         </div>
     );
 };

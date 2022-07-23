@@ -27,7 +27,7 @@ const CommentBoxEdit = () => {
         };
         try {
             await axiosServer.put(
-                `/comments/${commentEditRow.id}`,
+                `/comments/${commentEditRow._id}`,
                 commentData
             );
             dispatch(fetchCommentsByTaskId());
@@ -38,7 +38,7 @@ const CommentBoxEdit = () => {
     };
 
     useEffect(() => {
-        commentEditUpdateTaskId(taskEditRow.id);
+        commentEditUpdateTaskId(taskEditRow._id);
     }, []);
     return (
         <div>

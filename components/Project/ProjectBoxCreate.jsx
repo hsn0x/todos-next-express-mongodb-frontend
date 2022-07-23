@@ -29,15 +29,17 @@ const ProjectBoxCreate = ({ Projects, row }) => {
             {Projects &&
                 Projects.map((project) => (
                     <div
-                        key={project.id}
-                        onClick={() => taskCreateUpdateProjectId(project.id)}
+                        key={project._id}
+                        onClick={() => taskCreateUpdateProjectId(project._id)}
                         className="cursor-pointer"
                     >
                         <Dropdown.Item>
                             <div className="flex justify-between w-52">
                                 <div>{project.name}</div>
                                 <div>
-                                    {row.ProjectId == project.id && <FaCheck />}
+                                    {row.ProjectId == project._id && (
+                                        <FaCheck />
+                                    )}
                                 </div>
                             </div>
                         </Dropdown.Item>

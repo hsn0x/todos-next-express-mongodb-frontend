@@ -27,15 +27,15 @@ const PrioritiesBoxCreate = ({ Priorities, row }) => {
             {Priorities &&
                 Priorities.map((priority) => (
                     <div
-                        key={priority.id}
-                        onClick={() => taskCreateUpdatePriorityId(priority.id)}
+                        key={priority._id}
+                        onClick={() => taskCreateUpdatePriorityId(priority._id)}
                         className="cursor-pointer"
                     >
                         <Dropdown.Item>
                             <div className="flex justify-between w-52">
                                 <div>{priority.name}</div>
                                 <div>
-                                    {row.PriorityId == priority.id && (
+                                    {row.PriorityId == priority._id && (
                                         <FaCheck />
                                     )}
                                 </div>

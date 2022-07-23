@@ -27,19 +27,19 @@ const LabelsBoxCreate = ({ Labels, row }) => {
             {Labels &&
                 Labels.map((label) => (
                     <div
-                        key={label.id}
-                        onClick={() => taskCreateUpdateLabelsIds(label.id)}
+                        key={label._id}
+                        onClick={() => taskCreateUpdateLabelsIds(label._id)}
                         className="cursor-pointer"
                     >
                         <Dropdown.Item>
                             <div
                                 className="flex justify-between w-52"
-                                htmlFor={`label-${label.id}`}
+                                htmlFor={`label-${label._id}`}
                             >
                                 <div>{label.name}</div>
                                 <div>
                                     {row.LabelsIds.length > 0 &&
-                                        row.LabelsIds.includes(label.id) && (
+                                        row.LabelsIds.includes(label._id) && (
                                             <FaCheck />
                                         )}
                                 </div>

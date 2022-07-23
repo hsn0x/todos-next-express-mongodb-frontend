@@ -32,15 +32,15 @@ const ProjectBoxEdit = ({ Projects, row }) => {
                 {Projects &&
                     Projects.map((project) => (
                         <div
-                            key={project.id}
-                            onClick={() => taskEditUpdateProjectId(project.id)}
+                            key={project._id}
+                            onClick={() => taskEditUpdateProjectId(project._id)}
                             className="cursor-pointer"
                         >
                             <Dropdown.Item>
                                 <div className="flex justify-between w-52">
                                     <div>{project.name}</div>
                                     <div>
-                                        {row.ProjectId == project.id && (
+                                        {row.ProjectId == project._id && (
                                             <FaCheck />
                                         )}
                                     </div>

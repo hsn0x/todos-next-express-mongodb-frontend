@@ -38,7 +38,7 @@ const TaskBoxEditModalFooter = () => {
             LabelsIds,
         };
         try {
-            const data = await axiosServer.put(`/tasks/${row.id}`, taskData);
+            const data = await axiosServer.put(`/tasks/${row._id}`, taskData);
             dispatch(fetchProfile());
             taskEditUpdateisEditModal(false);
         } catch (error) {

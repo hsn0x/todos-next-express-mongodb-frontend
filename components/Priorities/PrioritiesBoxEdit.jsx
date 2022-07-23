@@ -32,9 +32,9 @@ const PrioritiesBoxEdit = ({ Priorities, row }) => {
                 {Priorities &&
                     Priorities.map((priority) => (
                         <div
-                            key={priority.id}
+                            key={priority._id}
                             onClick={() =>
-                                taskEditUpdatePriorityId(priority.id)
+                                taskEditUpdatePriorityId(priority._id)
                             }
                             className="cursor-pointer"
                         >
@@ -42,7 +42,7 @@ const PrioritiesBoxEdit = ({ Priorities, row }) => {
                                 <div className="flex justify-between w-52">
                                     <div>{priority.name}</div>
                                     <div>
-                                        {row.PriorityId == priority.id && (
+                                        {row.PriorityId == priority._id && (
                                             <FaCheck />
                                         )}
                                     </div>

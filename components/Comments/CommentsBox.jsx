@@ -14,9 +14,9 @@ const CommentsBox = ({ comments }) => {
         <div className="flex flex-col gap-5">
             {comments &&
                 comments.map((comment) => (
-                    <div key={comment.id}>
+                    <div key={comment._id}>
                         {commentEditIsEdit &&
-                        comment.id == commentEditRow.id ? (
+                        comment._id == commentEditRow._id ? (
                             <CommentBoxEdit comment={comment} />
                         ) : (
                             <CommentBox comment={comment} />

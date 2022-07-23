@@ -34,7 +34,7 @@ const CommentBoxCreate = () => {
     };
 
     useEffect(() => {
-        commentCreateUpdateTaskId(taskEditRow.id);
+        commentCreateUpdateTaskId(taskEditRow._id);
     }, []);
     return (
         <div>

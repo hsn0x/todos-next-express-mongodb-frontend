@@ -23,8 +23,8 @@ const CommentBox = ({ comment }) => {
     const handleCommentEditShow = () => {
         commentEditUpdateLoading(true);
         commentEditUpdateContent(comment.content);
-        commentEditUpdateId(comment.id);
-        commentEditUpdateTaskId(taskEditRow.id);
+        commentEditUpdateId(comment._id);
+        commentEditUpdateTaskId(taskEditRow._id);
         commentEditUpdateisEdit(true);
         commentEditUpdateLoading(false);
     };

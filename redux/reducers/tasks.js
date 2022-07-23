@@ -73,7 +73,7 @@ export const fetchTasksByUserId = () => {
         tasksFetchRequest();
         try {
             const { data } = await axiosServer.get(
-                `/tasks/UserId/${getState().auth.user.id}`
+                `/tasks/UserId/${getState().auth.user._id}`
             );
             tasksFetchSuccess(data);
         } catch (error) {

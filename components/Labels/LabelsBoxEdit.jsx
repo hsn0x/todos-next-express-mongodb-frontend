@@ -31,21 +31,21 @@ const LabelsBoxEdit = ({ Labels, row }) => {
                 {Labels &&
                     Labels.map((label) => (
                         <div
-                            key={label.id}
-                            onClick={() => taskEditUpdateLabelsIds(label.id)}
+                            key={label._id}
+                            onClick={() => taskEditUpdateLabelsIds(label._id)}
                             className="cursor-pointer"
                         >
                             <Dropdown.Item>
                                 <div
                                     className="flex justify-between w-52"
-                                    htmlFor={`label-${label.id}`}
+                                    htmlFor={`label-${label._id}`}
                                 >
                                     <div>{label.name}</div>
 
                                     <div>
                                         {row.LabelsIds.length > 0 &&
                                             row.LabelsIds.includes(
-                                                label.id
+                                                label._id
                                             ) && <FaCheck />}
                                     </div>
                                 </div>
@@ -58,8 +58,8 @@ const LabelsBoxEdit = ({ Labels, row }) => {
                 {row.Labels &&
                     row.Labels.map((label) => (
                         <div
-                            key={label.id}
-                            onClick={() => taskEditUpdateLabelsIds(label.id)}
+                            key={label._id}
+                            onClick={() => taskEditUpdateLabelsIds(label._id)}
                         >
                             <div className="rounded-full bg-gray-200 px-4 flex gap-1 text-base">
                                 <div>{label.name}</div>
