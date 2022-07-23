@@ -1,5 +1,5 @@
 {
-    "name": "hsn-todos-nextjs-frontend",
+    "name": "todos-next-express-mongodb-frontend",
     "version": "0.1.0",
     "private": true,
     "scripts": {
