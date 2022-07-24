@@ -6,7 +6,8 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "live": "yarn build && yarn start"
     },
     "author": "Hassane Bendaoud <40140987+realHassaneBen@users.noreply.github.com>",
     "license": "MIT",
