@@ -1,5 +1,8 @@
 const axiosServerConfig = {
-    baseURL: `${process.env.NEXT_PUBLIC_BACKEND_API_SSL}://${process.env.NEXT_PUBLIC_BACKEND_API_HOST}:${process.env.NEXT_PUBLIC_BACKEND_API_PORT}/${process.env.NEXT_PUBLIC_BACKEND_API_VERSION}`,
+    baseURL:
+        process.env.NODE_ENV == "production"
+            ? `${process.env.NEXT_PUBLIC_BACKEND_API_SSL}://${process.env.NEXT_PUBLIC_BACKEND_API_HOST}/${process.env.NEXT_PUBLIC_BACKEND_API_VERSION}`
+            : `${process.env.NEXT_PUBLIC_BACKEND_API_SSL}://${process.env.NEXT_PUBLIC_BACKEND_API_HOST}:${process.env.NEXT_PUBLIC_BACKEND_API_PORT}/${process.env.NEXT_PUBLIC_BACKEND_API_VERSION}`,
     withCredentials: true,
     headers: {
         "Content-Type": "application/json",
