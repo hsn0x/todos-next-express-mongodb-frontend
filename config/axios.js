@@ -20,3 +20,5 @@ const axiosClientConfig = {
 };
 
 export { axiosClientConfig, axiosServerConfig };
+
+console.log(axiosServerConfig.baseURL);
