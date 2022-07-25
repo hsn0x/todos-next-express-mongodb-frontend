@@ -39,7 +39,7 @@ const NavbarScreen = () => {
                             <Image
                                 src="/hsn_logo.png"
                                 objectFit="cover"
-                                alt="HSN Todo Logo"
+                                alt="Todo Logo"
                                 height={"80"}
                                 width={"80"}
                             />
